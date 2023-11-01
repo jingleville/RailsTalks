@@ -1,0 +1,13 @@
+<p> chats index </p>
+<% @chats.each do |chat| %>
+<div class="chat">
+	<p> 
+		<%=chat.name%>
+		<%= link_to 'Open', chat_path(chat.id), class: 'btn btn-primary' %>
+	</p>
+</div>
+<% end %>
+<%= link_to 'New', new_chat_path, class: 'btn btn-success' %>
+
+<% @chats.inspect %>
+<% @chats.to_a.inspect %>
