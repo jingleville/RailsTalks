@@ -1,9 +1,12 @@
-<p> chats index </p>
+<div class="row">
+<h1> Chats </h1>
+<p> Hello, <%= current_user.username %> </p>
+</div>
 <% @chats.each do |chat| %>
 <div class="chat">
 	<p> 
 		<%=chat.name%>
-		<%= link_to 'Open', chat_path(chat.id), class: 'btn btn-primary' %>
+		<%= link_to 'Open', chat_path(chat.id), class: 'btn btn-primary btn-sm' %>
 	</p>
 </div>
 <% end %>
@@ -11,3 +14,23 @@
 
 <% @chats.inspect %>
 <% @chats.to_a.inspect %>
+<%= Rails.application.credentials.dig(:webpush, :private_key)%>
+<script type="text/javascript">
+const vapidPublicKey = new Uint8Array(<%= Base64.urlsafe_decode64(Rails.application.credentials.dig(:webpush, :private_key)).bytes %>);
+if (navigator.serviceWorker) {
+	navigator.serviceWorker.register('/service_worker.js')
+	.then(function(reg) {
+		console.log('Service worker change, registered the service worker');
+	});
+} else {
+	console.error('Service worker is not supported in this browser');
+}
+
+navigator.serviceWorker.ready.then((serviceWorkerRegistration) => {
+	serviceWorkerRegistration.pushManager
+	.subscribe({
+		userVisibleOnly: true,
+		applicationServerKey: vapidPublicKey
+	});
+});
+</script>

@@ -1,13 +1,19 @@
+<%= turbo_stream_from @chat %>
 <div id="chat">
 	<h4 class="text-center"> <%= @chat.name %> </h4>
-	<%= turbo_stream_from @chat %>
+	
 	<div id="messages">
 	  <%= render @messages %>
 	</div>
+	
+	<% flash.each do |type, msg| %>
+	  <div>
+	    <%= msg %>
+	  </div>
+	<% end %>
 	<div class="form-group msg-form">
 	  <%= form_with(model: [@chat, @message], remote: true, class:'d-flex') do |f| %>
 	    <%= f.text_field :body, autocomplete: 'off', class: 'm-1'  %>
-	    <%= f.text_field :author, autocomplete: 'off', class: 'm-1' %>
 	    <%= f.submit 'Send', class: 'btn btn-primary m-1' %>	
 	  <% end %>
 	</div>

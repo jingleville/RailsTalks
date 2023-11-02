@@ -12,6 +12,7 @@ class ApiController < ApplicationController
 
 	private
 	def message_params
+		params[:message][:author] = 'message created via API'
 		params.require(:message).permit(:author, :body)
 	end
 end
