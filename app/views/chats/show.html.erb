@@ -5,12 +5,7 @@
 	<div id="messages">
 	  <%= render @messages %>
 	</div>
-	
-	<% flash.each do |type, msg| %>
-	  <div>
-	    <%= msg %>
-	  </div>
-	<% end %>
+
 	<div class="form-group msg-form">
 	  <%= form_with(model: [@chat, @message], remote: true, class:'d-flex') do |f| %>
 	    <%= f.text_field :body, autocomplete: 'off', class: 'm-1'  %>

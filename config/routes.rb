@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :chats do
     resources :messages, only: %i[create]
   end
-
+  post 'notifications' => 'notifications#create'
   root 'chats#index'
 end
+
+
