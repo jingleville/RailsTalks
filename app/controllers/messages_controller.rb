@@ -3,7 +3,6 @@ class MessagesController < ApplicationController
 		@chat = Chat.find params[:chat_id]
 		@message = @chat.messages.new(message_params)
     if @message.save
-    	flash.alert = 'New message!!!'
     	redirect_to @chat
     else
       redirect_to root_path
