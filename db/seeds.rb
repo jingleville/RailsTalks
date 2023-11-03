@@ -1,9 +1,23 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+Chat.delete_all
+Message.delete_all
+User.delete_all
+
+10.times do
+  user = User.create! email: FFaker::Internet.email, password: 'paroll'
+  puts "Created a new user: #{user.email}"
+end
+
+10.times do
+	chat = Chat.create!(
+	  name: FFaker::Book.title
+	)
+	puts "Created a chat: #{chat.name}"
+
+	10.times do
+		message = chat.messages.build(
+			author: User.all.pluck(:email).map{|email| email.split('@')[0] }.sample,
+			body: FFaker::CheesyLingo.sentence
+		)
+		message.save
+	end
+end

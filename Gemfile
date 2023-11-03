@@ -74,3 +74,9 @@ end
 gem "devise", "~> 4.9"
 gem "web-push"
 
+
+gem "ffaker", "~> 2.23"
+
+gem "rails-helper", "~> 0.1.0"
+
+gem "rails_helper", "~> 2.2"

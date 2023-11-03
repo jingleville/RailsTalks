@@ -1,13 +1,23 @@
+<% content_for :head do %>
+  <h3>Chats</h3>
+<% end %>
+
 <div class="row">
-<h1> Chats </h1>
-<p> Hello, <%= current_user.username %> </p>
-</div>
-<% @chats.each do |chat| %>
-<div class="chat">
 	<p> 
-		<%=chat.name%>
-		<%= link_to 'Open', chat_path(chat.id), class: 'btn btn-primary btn-sm' %>
+		Hello, <%= current_user.username %> 
 	</p>
 </div>
+<% @chats.each do |chat| %>
+	<div class="d-flex justify-content-between bd-highlight mb-3"> 
+		<div class="p-2 bd-highlight">
+			<%=chat.name%>
+    </div>
+    <div class="p-2 bd-highlight">
+			<%= link_to 'Open', chat_path(chat.id), class: 'btn btn-primary btn-sm' %>
+		</div>
+	</div>
+	<hr>	
 <% end %>
-<%= link_to 'New', new_chat_path, class: 'btn btn-success' %>
+<div>
+	<%= link_to 'New', new_chat_path, class: 'btn btn-success' %>
+</div>

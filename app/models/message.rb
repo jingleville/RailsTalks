@@ -1,6 +1,7 @@
 class Message < ApplicationRecord
   belongs_to :chat
   after_create_commit :notificate
+  validates :body, presence: true
 
   private
   def notificate

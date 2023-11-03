@@ -1,4 +1,15 @@
-<div> 
-	<h3><%= message.body %></h3>
-	<p><%= message.author %></p>
+<div class="d-flex justify-content-between bd-highlight mb-3"> 
+	<div class="p-2 bd-highlight">
+		<figure>
+		  <blockquote class="blockquote">
+		    <p><%= message.body %></p>
+		  </blockquote>
+		  <figcaption class="blockquote-footer">
+		    <%= message.author %>
+		  </figcaption>
+		</figure>			
+  </div>
+  <div class="p-2 bd-highlight">
+  	<small class="text-muted"><%= message.created_at %></small>
+	</div>
 </div>

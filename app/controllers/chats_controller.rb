@@ -16,10 +16,10 @@ class ChatsController < ApplicationController
 	end
 
 	def create
-    @chat = Chat.new(chat_params)
+    chat = Chat.new(chat_params)
 
-    if @chat.save
-      redirect_to @chat
+    if chat.save
+      redirect_to chat
     else
       render :new, status: :unprocessable_entity
     end
